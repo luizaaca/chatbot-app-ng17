@@ -21,11 +21,11 @@ app.get('/api/dialogflow-token', async (req, res) => {
 });
 
 // Servir arquivos estáticos do Angular
-app.use(express.static(path.join(__dirname, '../dist/chatbot-app-ng17/browser')));
+app.use(express.static(path.join(__dirname, '../dist/browser')));
 
 // Redirecionar todas as rotas que não sejam de API ou arquivos estáticos para o index.html
 app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/chatbot-app-ng17/browser', 'index.html'));
+  res.sendFile(path.join(__dirname, '../dist/browser', 'index.html'));
 });
 
 app.listen(PORT, () => {
