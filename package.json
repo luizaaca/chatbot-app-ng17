@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --output-path=dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -16,6 +16,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "express": "^5.1.0",
     "google-auth-library": "^9.15.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
