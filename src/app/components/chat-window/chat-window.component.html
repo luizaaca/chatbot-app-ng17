@@ -1,5 +1,5 @@
 <div class="chat-container">
-    <div class="messages">
+    <div class="messages" #messagesContainer>
         <div *ngFor="let msg of messages" [ngClass]="msg.sender">
             <span>{{ msg.content }}</span>
             <app-suggestion-chips *ngIf="msg.suggestions" [chips]="msg.suggestions" (chipSelected)="sendChip($event)">
@@ -7,7 +7,7 @@
         </div>
     </div>
     <form (ngSubmit)="sendMessage()" class="input-area">
-        <input [(ngModel)]="userInput" name="userInput" placeholder="Digite sua mensagem..." autocomplete="off"
+        <input [(ngModel)]="userInput" name="userInput" placeholder="Digite sua mensagem..." autocomplete="on"
             required />
         <button type="submit">Enviar</button>
     </form>

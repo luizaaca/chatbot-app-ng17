@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Dialogflow } from '../../services/dialogflow';
@@ -12,11 +12,23 @@ import { SuggestionChipsComponent } from '../suggestion-chips/suggestion-chips.c
   templateUrl: './chat-window.component.html',
   styleUrl: './chat-window.component.css'
 })
-export class ChatWindowComponent {
+export class ChatWindowComponent implements AfterViewChecked {
   userInput = '';
   messages: Message[] = [];
 
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
+
   constructor(private dialogflow: Dialogflow) {}
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
 
   sendMessage() {
     if (!this.userInput.trim()) return;
