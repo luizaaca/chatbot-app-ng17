@@ -15,7 +15,6 @@ import { SuggestionChipsComponent } from '../suggestion-chips/suggestion-chips.c
 export class ChatWindowComponent {
   userInput = '';
   messages: Message[] = [];
-  token = ''; // Preencha com o token seguro vindo do backend
 
   constructor(private dialogflow: Dialogflow) {}
 
@@ -26,7 +25,7 @@ export class ChatWindowComponent {
     const userMsg = this.userInput;
     this.userInput = '';
 
-    this.dialogflow.sendMessage(userMsg, this.token).subscribe(msg => {
+    this.dialogflow.sendMessage(userMsg).subscribe(msg => {
       this.messages.push(msg);
     });
   }
