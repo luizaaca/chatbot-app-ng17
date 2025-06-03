@@ -18,7 +18,13 @@ export class ChatWindowComponent implements AfterViewChecked {
 
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
 
-  constructor(private dialogflow: Dialogflow) {}
+  constructor(private dialogflow: Dialogflow) {
+    // Carrega o histórico salvo ao iniciar
+    const saved = localStorage.getItem('chat-history');
+    if (saved) {
+      this.messages = JSON.parse(saved);
+    }
+  }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
@@ -30,15 +36,20 @@ export class ChatWindowComponent implements AfterViewChecked {
     } catch (err) {}
   }
 
+  private saveHistory() {
+    localStorage.setItem('chat-history', JSON.stringify(this.messages));
+  }
+
   sendMessage() {
     if (!this.userInput.trim()) return;
-    // Adiciona mensagem do usuário ao histórico
     this.messages.push({ content: this.userInput, sender: 'user', timestamp: new Date() });
     const userMsg = this.userInput;
     this.userInput = '';
+    this.saveHistory();
 
     this.dialogflow.sendMessage(userMsg).subscribe(msg => {
       this.messages.push(msg);
+      this.saveHistory();
     });
   }
 
