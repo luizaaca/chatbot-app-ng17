@@ -4,7 +4,7 @@ import { ChatWindowComponent } from './components/chat-window/chat-window.compon
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ChatWindowComponent],
+  imports: [ChatWindowComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
