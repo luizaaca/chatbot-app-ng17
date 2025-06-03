@@ -1,0 +1,12 @@
+.input-area {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.input-area input {
+  flex: 1;
+  padding: 8px;
+}
+.input-area button {
+  padding: 8px 16px;
+}

@@ -1,0 +1,14 @@
+<div class="chat-container">
+    <div class="messages">
+        <div *ngFor="let msg of messages" [ngClass]="msg.sender">
+            <span>{{ msg.content }}</span>
+            <app-suggestion-chips *ngIf="msg.suggestions" [chips]="msg.suggestions" (chipSelected)="sendChip($event)">
+            </app-suggestion-chips>
+        </div>
+    </div>
+    <form (ngSubmit)="sendMessage()" class="input-area">
+        <input [(ngModel)]="userInput" name="userInput" placeholder="Digite sua mensagem..." autocomplete="off"
+            required />
+        <button type="submit">Enviar</button>
+    </form>
+</div>

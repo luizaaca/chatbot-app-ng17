@@ -1,0 +1,16 @@
+.chips {
+  margin-top: 8px;
+}
+.chips button {
+  margin-right: 6px;
+  margin-bottom: 4px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: none;
+  background: #e0e0e0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.chips button:hover {
+  background: #bdbdbd;
+}
